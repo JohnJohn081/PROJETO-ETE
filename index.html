@@ -1,0 +1,94 @@
+<!--
+PROJETO TOTALMENTE ESTUDANTIL FEITO PARA FEIRA DE JOGOS DO ETE
+# 
+#INFORMAÇÕES UTIES: O site tem um sistema de segurança basico, utiliza meios do navegador para bloquear o acesso de algumas pagina antes da hora
+#Se voce é alguem olhando o codigo fonte esse texto, não faça algo que quebre o codigo e faça voce ter vantagem no 
+#ranking ou algo assim, não é legal nem justo!
+#DESENVOLVIDO POR John 1 TDS "A" ESCOLA TECNICA ESTADUAL DE PALMARES
+# DATA DE CRIAÇÃO: 24/05/2024
+# DATA DA ULTIMA MODIFICAÇÃO: 26/05/2024
+# OUTROS PROJETOS EM: https://github.com/JohnJohn081
+# ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄       ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄   ▄▄▄▄▄▄▄▄▄▄▄ 
+#▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌     ▐░░░░░░░░░░░▌▐░░░░░░░░░░▌ ▐░░░░░░░░░░░▌
+#▐░█▀▀▀▀▀▀▀▀▀  ▀▀▀▀█░█▀▀▀▀ ▐░█▀▀▀▀▀▀▀▀▀       ▀▀▀▀█░█▀▀▀▀ ▐░█▀▀▀▀▀▀▀█░▌▐░█▀▀▀▀▀▀▀▀▀ 
+#▐░▌               ▐░▌     ▐░▌                    ▐░▌     ▐░▌       ▐░▌▐░▌          
+#▐░█▄▄▄▄▄▄▄▄▄      ▐░▌     ▐░█▄▄▄▄▄▄▄▄▄           ▐░▌     ▐░▌       ▐░▌▐░█▄▄▄▄▄▄▄▄▄ 
+#▐░░░░░░░░░░░▌     ▐░▌     ▐░░░░░░░░░░░▌          ▐░▌     ▐░▌       ▐░▌▐░░░░░░░░░░░▌
+#▐░█▀▀▀▀▀▀▀▀▀      ▐░▌     ▐░█▀▀▀▀▀▀▀▀▀           ▐░▌     ▐░▌       ▐░▌ ▀▀▀▀▀▀▀▀▀█░▌
+#▐░▌               ▐░▌     ▐░▌                    ▐░▌     ▐░▌       ▐░▌          ▐░▌
+#▐░█▄▄▄▄▄▄▄▄▄      ▐░▌     ▐░█▄▄▄▄▄▄▄▄▄           ▐░▌     ▐░█▄▄▄▄▄▄▄█░▌ ▄▄▄▄▄▄▄▄▄█░▌
+#▐░░░░░░░░░░░▌     ▐░▌     ▐░░░░░░░░░░░▌          ▐░▌     ▐░░░░░░░░░░▌ ▐░░░░░░░░░░░▌
+# ▀▀▀▀▀▀▀▀▀▀▀       ▀       ▀▀▀▀▀▀▀▀▀▀▀            ▀       ▀▀▀▀▀▀▀▀▀▀   ▀▀▀▀▀▀▀▀▀▀▀  
+
+-->
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROJETO ETE</title>
+</head>
+<body>
+    <div id="home">
+        <h1>PROJETO ETE</h1>
+        <a href="aa.html">Sobre</a>
+        <a href="dsa.html">TESTE</a>
+        <a href="sda.html">TESTE</a>
+    </div>
+
+    <div class="container">
+        <div class="login-box">
+            <form id="rankingForm">
+                <div class="user-box">
+                    <input type="text" name="name" id="name" required="">
+                    <label>Seu Nome</label>
+                </div>
+                <div class="user-box">
+                    <select name="class" id="class" required="">
+                        <optgroup label="TDS">
+                            <option value="1TDS A">1 TDS A</option>
+                            <option value="1TDS B">1 TDS B</option>
+                            <option value="2TDS A">2 TDS A</option>
+                            <option value="2TDS B">2 TDS B</option>
+                            <option value="3TDS A">3 TDS A</option>
+                            <option value="3TDS B">3 TDS B</option>
+                        </optgroup>
+                        <optgroup label="ADM">
+                            <option value="1ADM A">1 ADM A</option>
+                            <option value="2ADM A">2 ADM A</option>
+                            <option value="3ADM A">3 ADM A</option>
+                            <option value="1ADM B">1 ADM B</option>
+                            <option value="2ADM B">2 ADM B</option>
+                            <option value="3ADM B">3 ADM B</option>
+                        </optgroup>                        
+                    </select>
+                    <label>Escolha sua Turma</label>
+                </div>
+                <center>
+                    <a href="#" id="submitBtn">
+                        INICIAR
+                        <span></span>
+                    </a>
+                </center>
+            </form>
+        </div>
+
+        <div class="ranking-box">
+            <h2>Ranking</h2>
+            <div id="rankingList"></div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
