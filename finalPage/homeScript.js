@@ -44,7 +44,7 @@ const loadRanking = () => {
     pontoUser.innerHTML = '';
 
     const userScore = localStorage.getItem('userScore');
-    pontoUser.innerHTML = `<h2> Parabéns, você acertou ${userScore} de 10 pergunta!</h2>`; // cria um h2 com o numero atual do Score do user 
+    pontoUser.innerHTML = `<h2> Parabéns, você conseguiu ${userScore} pontos de 180!</h2>`; // cria um h2 com o numero atual do Score do user 
     
 
     db.collection("ranking")

@@ -19,21 +19,20 @@ PROJETO TOTALMENTE ESTUDANTIL FEITO PARA FEIRA DE JOGOS DO ETE
 #▐░█▄▄▄▄▄▄▄▄▄      ▐░▌     ▐░█▄▄▄▄▄▄▄▄▄           ▐░▌     ▐░█▄▄▄▄▄▄▄█░▌ ▄▄▄▄▄▄▄▄▄█░▌
 #▐░░░░░░░░░░░▌     ▐░▌     ▐░░░░░░░░░░░▌          ▐░▌     ▐░░░░░░░░░░▌ ▐░░░░░░░░░░░▌
 # ▀▀▀▀▀▀▀▀▀▀▀       ▀       ▀▀▀▀▀▀▀▀▀▀▀            ▀       ▀▀▀▀▀▀▀▀▀▀   ▀▀▀▀▀▀▀▀▀▀▀  
-
 -->*/
-
-
 
 const questionElement = document.getElementById('question');
 const options = document.querySelectorAll('.option-btn');
+const timerElement = document.getElementById('timer');
 let respondeu = false; // Variável para verificar se a pergunta foi respondida pro cara não flodar click e fazer varios pontos
 let score = parseInt(localStorage.getItem('userScore')) || 0; // pega o valor de score e passa pra INT
 let desafio1Finalizado = localStorage.getItem('desafio1Finalizado') === 'true'; // Variável para verificar se o desafio 1 foi finalizado
-let acessoPag = localStorage.getItem('acessoPag') // variavel com a info se o user tem acesso dado quando clica em iniciar no index.html
+let acessoPag = localStorage.getItem('acessoPag'); // variavel com a info se o user tem acesso dado quando clica em iniciar no index.html
+let currentQuestionIndex = 0; // Índice da questão atual
+let timer; // Variável para armazenar o timer
+let timeLeft = 60; // 1 minuto para cada pergunta
 
-
-// metodo para carregar pergunta facilita fazer outras paginas como está e assim fazer varias perguntas sem dificuldade
-
+// Lista de perguntas
 const questions = [
     {
         question: "Qual é o processo pelo qual uma substância passa diretamente do estado sólido para o gasoso, sem passar pelo estado líquido?",
@@ -42,44 +41,59 @@ const questions = [
     }
 ];
 
-let currentQuestionIndex = 0;
-
-
-// quando chamada ele carrega a lista questions no seu devido lugar
+// Função para carregar uma nova pergunta
 function loadQuestion() {
     respondeu = false; 
+    timeLeft = 60; // Reinicia o tempo
     const currentQuestion = questions[currentQuestionIndex];
     questionElement.textContent = currentQuestion.question;
 
     options.forEach((option, index) => {
         option.textContent = currentQuestion.options[index];
     });
+
+    startTimer();
 }
 
-// função pra checar a pergunta se ela é correta ou não
+// Função para iniciar e atualizar o cronômetro a cada segundo
+function startTimer() {
+    clearInterval(timer);
+    timerElement.textContent = timeLeft;
+    timer = setInterval(() => {
+        timeLeft--;
+        timerElement.textContent = timeLeft;
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            checkAnswer(null); // Se o tempo acabar, trata como resposta incorreta
+        }
+    }, 1000);
+}
 
+// Função para verificar a resposta
 function checkAnswer(answer) {
     const currentQuestion = questions[currentQuestionIndex];
     const selectedOption = document.querySelector('.option-btn:hover');
+    clearInterval(timer); // Para o cronômetro quando uma resposta é verificada
 
-    if (!respondeu) { // Verifica se o usuário já respondeu ant flood
-        respondeu = true; // Define respondeu como true para flood
+    if (!respondeu) {
+        respondeu = true;
+        let points = Math.max(1 * (timeLeft));                     // Calcula os pontos baseados no tempo restante
+
         if (answer === currentQuestion.answer) {
-            selectedOption.classList.add('correto'); // quando ele adiciona a opção selecionada para correto a CSS da classe correto é verde então o botao fica verde
-            score += 1; 
+            selectedOption.classList.add('correto');
+            score += points; // Adiciona pontos se a resposta estiver correta
         } else {
             selectedOption.classList.add('errado');
         }
 
-        localStorage.setItem('userScore', score); // Atualiza a pontuação no LocalStorage
+        localStorage.setItem('userScore', score);
 
         setTimeout(() => {
-            selectedOption.classList.remove('correct', 'wrong');
+            selectedOption.classList.remove('correto', 'errado');
             currentQuestionIndex++;
             if (currentQuestionIndex < questions.length) {
                 loadQuestion();
             } else {
-                // Quando todas as perguntas são respondidas, define desafio1Finalizado como true
                 localStorage.setItem('desafio1Finalizado', 'true');
                 window.location.href = '/desafios/desafio2/desafio2.html';
             }
@@ -87,25 +101,24 @@ function checkAnswer(answer) {
     }
 }
 
-if (acessoPag === 'true'){
-        if (desafio1Finalizado) {
-        alert('Essa pergunta ja foi respondida, clique em OK para ir para proxima pergunta')
-        window.location.href = '/desafios/desafio2/desafio2.html'; // Redireciona para o Desafio 2 se o Desafio 1 já foi concluído
+// Inicialização do quiz
+if (acessoPag === 'true') {
+    if (desafio1Finalizado) {
+        alert('Essa pergunta já foi respondida, clique em OK para ir para a próxima pergunta');
+        window.location.href = '/desafios/desafio2/desafio2.html';
     } else {
-        // Adiciona event listeners aos botões de opção
         options.forEach(option => {
             option.addEventListener('click', () => {
-                if (!respondeu) { // Verifica se a pergunta foi respondida
-                    checkAnswer(option.textContent.charAt(0)); // Passa a letra da opção clicada para checkAnswer
-                    respondeu = true; // Define respondeu como true
+                if (!respondeu) {
+                    checkAnswer(option.textContent.charAt(0));
+                    respondeu = true;
                 }
             });
         });
 
         loadQuestion();
     }
-}
-else{
-    alert('Voce ainda não tem acesso a essa pagina! Clique em OK para ir pro seu registro!!!')
-    window.location.href = '/../../index.html'
+} else {
+    alert('Você ainda não tem acesso a essa página! Clique em OK para ir para seu registro!!!');
+    window.location.href = '/../../index.html';
 }

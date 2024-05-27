@@ -27,11 +27,13 @@ PROJETO TOTALMENTE ESTUDANTIL FEITO PARA FEIRA DE JOGOS DO ETE
 
 const questionElement = document.getElementById('question');
 const options = document.querySelectorAll('.option-btn');
+const timerElement = document.getElementById('timer');
 let respondeu = false; 
 let score = parseInt(localStorage.getItem('userScore')) || 0;
 let desafio2Finalizado = localStorage.getItem('desafio2Finalizado') === 'true'; 
 let desafio1Finalizado = localStorage.getItem('desafio1Finalizado') === 'true'; 
-
+let timer; // Variável para armazenar o timer
+let timeLeft = 60; // 1 minuto para cada pergunta
 
 const questions = [
     {
@@ -45,23 +47,44 @@ let currentQuestionIndex = 0;
 
 function loadQuestion() {
     respondeu = false; 
+    timeLeft = 60; // Reinicia o tempo
     const currentQuestion = questions[currentQuestionIndex];
     questionElement.textContent = currentQuestion.question;
 
     options.forEach((option, index) => {
         option.textContent = currentQuestion.options[index];
     });
+    startTimer();
+
+}
+
+// Função para iniciar e atualizar o cronômetro a cada segundo
+function startTimer() {
+    clearInterval(timer);
+    timerElement.textContent = timeLeft;
+    timer = setInterval(() => {
+        timeLeft--;
+        timerElement.textContent = timeLeft;
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            checkAnswer(null);                                                      // Se o tempo acabar, trata como resposta incorreta
+        }
+    }, 1000);
 }
 
 function checkAnswer(answer) {
     const currentQuestion = questions[currentQuestionIndex];
     const selectedOption = document.querySelector('.option-btn:hover');
+    clearInterval(timer);                                                       // Para o cronômetro quando uma resposta é verificada
+
 
     if (!respondeu) { 
         respondeu = true; 
+        let points = Math.max(1 * (timeLeft));                     // Calcula os pontos baseados no tempo restante
+
         if (answer === currentQuestion.answer) {
             selectedOption.classList.add('correto');
-            score += 1; 
+            score += points;                                                     // Adiciona pontos se a resposta estiver correta
         } else {
             selectedOption.classList.add('errado');
         }

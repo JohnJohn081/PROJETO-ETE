@@ -1,9 +1,21 @@
+#timer-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: red;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.5rem;
+}
+
 body {
     background: url("../../imagens/6701110.jpg");
     background-size: cover;
     background-position: center;
     color: white;
     font-family: Arial, sans-serif;
+    position: relative; /* Add this to make #timer-container positioning work */
 }
 
 .quiz-container {
@@ -24,7 +36,6 @@ h2 {
     font-size: 1.5rem;
     margin-bottom: 20px;
 }
-
 
 .option-btn {
     margin: 10px;
@@ -66,15 +77,15 @@ h2 {
     transition: all 0.3s ease 0s;
     cursor: pointer;
     outline: none;
-  }
-  
-  .option-btn:hover {
+}
+
+.option-btn:hover {
     background-color: #1d5dc3;
     box-shadow: 0px 15px 20px rgba(46, 107, 229, 0.4);
     color: #fff;
     transform: translateY(-7px);
-  }
-  
-  .option-btn:active {
+}
+
+.option-btn:active {
     transform: translateY(-1px);
-  }
+}

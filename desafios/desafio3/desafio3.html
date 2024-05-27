@@ -33,15 +33,20 @@ PROJETO TOTALMENTE ESTUDANTIL FEITO PARA FEIRA DE JOGOS DO ETE
 </head>
 <body>
     <div class="quiz-container">
+        <div id="timer-container">
+            <span id="timer">60</span>
+        </div>
         <h1>Quiz de Química</h1>
         <div id="question-container">
             <h2 id="question"></h2>
-            <center><div id="options-container">
-                <button class="option-btn" onclick="checkAnswer('A')">A</button>
-                <button class="option-btn" onclick="checkAnswer('B')">B</button>
-                <button class="option-btn" onclick="checkAnswer('C')">C</button>
-                <button class="option-btn" onclick="checkAnswer('D')">D</button>
-            </div></center>
+            <center>
+                <div id="options-container">
+                    <button class="option-btn" onclick="checkAnswer('A')">A</button>
+                    <button class="option-btn" onclick="checkAnswer('B')">B</button>
+                    <button class="option-btn" onclick="checkAnswer('C')">C</button>
+                    <button class="option-btn" onclick="checkAnswer('D')">D</button>
+                </div>
+            </center>
         </div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
