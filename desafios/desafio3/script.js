@@ -6,7 +6,7 @@ PROJETO TOTALMENTE ESTUDANTIL FEITO PARA FEIRA DE JOGOS DO ETE
 #ranking ou algo assim, não é legal nem justo!
 #DESENVOLVIDO POR John 1 TDS "A" ESCOLA TECNICA ESTADUAL DE PALMARES
 # DATA DE CRIAÇÃO: 24/05/2024
-# DATA DA ULTIMA MODIFICAÇÃO: 26/05/2024
+# DATA DA ULTIMA MODIFICAÇÃO: 30/05/2024
 # OUTROS PROJETOS EM: https://github.com/JohnJohn081
 # ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄       ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄   ▄▄▄▄▄▄▄▄▄▄▄ 
 #▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌     ▐░░░░░░░░░░░▌▐░░░░░░░░░░▌ ▐░░░░░░░░░░░▌
@@ -28,6 +28,8 @@ PROJETO TOTALMENTE ESTUDANTIL FEITO PARA FEIRA DE JOGOS DO ETE
 const questionElement = document.getElementById('question');
 const options = document.querySelectorAll('.option-btn');
 const timerElement = document.getElementById('timer');
+const hintElement = document.getElementById('hint');
+
 let respondeu = false; 
 let score = parseInt(localStorage.getItem('userScore')) || 0;
 let desafio1Finalizado = localStorage.getItem('desafio1Finalizado') === 'true';  
@@ -37,6 +39,7 @@ const name = localStorage.getItem('userName');
 const userClass = localStorage.getItem('turmaUser');
 let timer; // Variável para armazenar o timer
 let timeLeft = 60; // 1 minuto para cada pergunta
+let dica = 'true';
 
 
 const firebaseConfig = {
@@ -56,7 +59,8 @@ const questions = [
     {
         question: "Qual é o termo usado para descrever a capacidade de uma substância para se dissolver em outra?",
         options: ["A) Ionização", "B) Combustão", "C) Decomposição", "D) Solubilidade"],
-        answer: "D"
+        answer: "D",
+        hint: "Pense no que acontece quando você mistura sal ou açúcar na água."
     }
 ];
 
@@ -147,6 +151,15 @@ function addToRanking(name, userClass, score) {
     });
 }    
 
+function getHint() {
+    if (dica === 'true'){
+        const currentQuestion = questions[currentQuestionIndex];
+        hintElement.textContent = currentQuestion.hint; // Exibe a dica
+        score = (score - 5);
+        localStorage.setItem('userScore', score); // Atualiza o score no localStorage      
+        dica = 'false';  
+    }
+}
 
 if (!desafio1Finalizado) {
     alert('Você não tem acesso a essa pergunta ainda. Clique em OK para ir para a pergunta atual.');
@@ -156,7 +169,7 @@ if (!desafio1Finalizado) {
     window.location.href = '/desafios/desafio2/desafio2.html'; 
 } else if (desafio3Finalizado) {
     alert('Essa pergunta já foi respondida. Clique em OK para ir para a próxima pergunta.');
-    window.location.href = '/desafios/desafio4/desafio4.html'; 
+    window.location.href = '/../../finalPage/home.html'; 
 } else {
     options.forEach(option => {
         option.addEventListener('click', () => {

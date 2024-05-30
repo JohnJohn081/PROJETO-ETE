@@ -6,7 +6,7 @@ PROJETO TOTALMENTE ESTUDANTIL FEITO PARA FEIRA DE JOGOS DO ETE
 #ranking ou algo assim, não é legal nem justo!
 #DESENVOLVIDO POR John 1 TDS "A" ESCOLA TECNICA ESTADUAL DE PALMARES
 # DATA DE CRIAÇÃO: 24/05/2024
-# DATA DA ULTIMA MODIFICAÇÃO: 26/05/2024
+# DATA DA ULTIMA MODIFICAÇÃO: 30/05/2024
 # OUTROS PROJETOS EM: https://github.com/JohnJohn081
 # ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄       ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄   ▄▄▄▄▄▄▄▄▄▄▄ 
 #▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌     ▐░░░░░░░░░░░▌▐░░░░░░░░░░▌ ▐░░░░░░░░░░░▌
@@ -24,12 +24,12 @@ PROJETO TOTALMENTE ESTUDANTIL FEITO PARA FEIRA DE JOGOS DO ETE
 
 
 const firebaseConfig = {
-    apiKey: "",
-    authDomain: "",
-    projectId: "",
-    storageBucket: "",
-    messagingSenderId: "",
-    appId: ""
+    apiKey: "AIzaSyBgx-iE-9qrpz_4VoRXw7WYMCyDPmSMJVg",
+    authDomain: "projeto-ete-bd888.firebaseapp.com",
+    projectId: "projeto-ete-bd888",
+    storageBucket: "projeto-ete-bd888.appspot.com",
+    messagingSenderId: "38130667780",
+    appId: "1:38130667780:web:473708dd6183bc81940051"
   };
 
 firebase.initializeApp(firebaseConfig);
@@ -61,6 +61,14 @@ const loadRanking = () => {
         .catch((error) => {
             console.error("Erro ao obter documentos: ", error);
         });
+        console.log("Status resetado com sucesso!");
+        localStorage.setItem('desafio1Finalizado', 'false');
+        localStorage.setItem('desafio2Finalizado', 'false');
+        localStorage.setItem('desafio3Finalizado', 'false');
+        //localStorage.setItem('userScore', '0');
+        localStorage.setItem('userName', 'não modifique nada aqui, seja justo!')
+        localStorage.setItem('turmaUser', 'turma Pendente')
+        localStorage.setItem('acessoPag', 'false')
 };
 
 

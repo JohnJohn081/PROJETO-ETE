@@ -23,36 +23,35 @@ PROJETO TOTALMENTE ESTUDANTIL FEITO PARA FEIRA DE JOGOS DO ETE
 -->
 
 
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz de Química</title>
-    <link rel="stylesheet" href="/stylePergunta.css">
+    <title>PROJETO ETE</title>
 </head>
 <body>
-    <div class="quiz-container">
-        <div id="timer-container">
-            <span id="timer">60</span>
-        </div>
-        <h1>Quiz de Química</h1>
-        <div id="question-container">
-            <h2 id="question"></h2>
-            <center>
-                <div id="options-container">
-                    <button class="option-btn" onclick="checkAnswer('A')">A</button>
-                    <button class="option-btn" onclick="checkAnswer('B')">B</button>
-                    <button class="option-btn" onclick="checkAnswer('C')">C</button>
-                    <button class="option-btn" onclick="checkAnswer('D')">D</button>
-                </div>
-                <button id="hint-btn" onclick="getHint()">Dica</button>
-                <p id="hint"></p>
-            </center>
-        </div>
+    <div id="home">
+        <h1>PROJETO ETE</h1>
+        <a href="index.html">Inicio</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="https://www.instagram.com/_johnvx/" target="_blank">Contato</a>
     </div>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="script.js"></script>
+
+    <div id="sobre">
+        <h2>SOBRE O SITE</h2>
+        <p>Fiz esse site com o objetivo de apresentar na feira de jogos do ETE PALMARES. Utilizei os meus conhecimentos atuais, porém com esse projeto evolui 30x mais meus conhecimentos, pois tive que pesquisar e procurar formas de botar minha ideia em prática! O site tem um sistema de ranking conectado a um banco de dados da Firebase (serviço grátis do Google), onde ele pega os 10 documentos com mais SCORE e coloca seus dados em ordem. O site também utiliza um sistema para que o usuário não consiga facilmente passar para a próxima página sem ter terminado o seu desafio atual com LocalStorage.</p>
+        
+        <h3>Tecnologias Utilizadas</h3>
+        <ul>
+            <li><img src="https://img.icons8.com/color/48/000000/javascript.png" alt="JavaScript"> JavaScript</li>
+            <li><img src="https://img.icons8.com/color/48/000000/html-5.png" alt="HTML"> HTML</li>
+            <li><img src="https://img.icons8.com/color/48/000000/css3.png" alt="CSS"> CSS</li>
+        </ul>
+    </div>
 </body>
 </html>
+

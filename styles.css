@@ -1,6 +1,13 @@
+body {
+    background: url(imagens/fundo.jpg);
+    background-size: cover; 
+    background-position: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #fff;
+}
+
 #home {
     text-align: right;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 22px;
     padding-right: 20px; 
 }
@@ -8,21 +15,66 @@
 #home h1 {
     font-size: 45px;
     text-align: right; 
-}
-
-#home a, #home p, #home div {
-    text-align: right; 
-    display: inline-block; 
+    color: #000;
 }
 
 #home a {
     margin: 5px;
+    color: #000;
+    text-decoration: none;
+    font-size: 25px;
+    margin-top: -5%;
 }
 
-body {
-    background: url(imagens/6701110.jpg);
-    background-size: 1700px; 
-    background-position: center;
+#home a:hover {
+    color: #f99;
+}
+
+#sobre {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    margin: 20px auto;
+    width: 80%;
+    border-radius: 10px;
+    box-shadow: 0 15px 25px rgba(0,0,0,.6);
+}
+
+#sobre h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#sobre p {
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+#sobre h3 {
+    font-size: 24px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#sobre ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+}
+
+#sobre ul li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+}
+
+#sobre ul li img {
+    width: 48px;
+    height: 48px;
 }
 
 .container {
@@ -142,6 +194,7 @@ body {
     background-color: #333; 
     color: #fff; 
 }
+
 .ranking-box {
     width: 400px;
     padding: 40px;
@@ -159,45 +212,32 @@ body {
     text-align: center;
 }
 
-.ranking-box h3{
+.ranking-box h3 {
     border: solid rgb(255, 255, 255) 2px;
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
     font-size: 14px;
 }
 
-
-
-
-
-@keyframes btn-anim1 {
-    0% {
-        left: -100%;
-    }
-
-    50%, 100% {
-        left: 100%;
-    }
-}
-
-
 ul {
     list-style: none;
-  }
-  
-  .example-2 {
+}
+
+.example-2 {
     display: flex;
-    justify-content:right;
+    justify-content: right;
     align-items: end;
-    flex-direction:column;
-    margin-top: -500px;
-  }
-  .example-2 .icon-content {
+    flex-direction: row;
+    margin-top: -3%;
+}
+
+.example-2 .icon-content {
     margin: 0 15px;
     position: relative;
     padding: 0.5rem;
-  }
-  .example-2 .icon-content a {
+}
+
+.example-2 .icon-content a {
     position: relative;
     overflow: hidden;
     display: flex;
@@ -209,20 +249,24 @@ ul {
     color: #4d4d4d;
     background-color: #fff;
     transition: all 0.3s ease-in-out;
-  }
-  .example-2 .icon-content a:hover {
+}
+
+.example-2 .icon-content a:hover {
     box-shadow: 3px 2px 45px 0px rgb(0 0 0 / 12%);
-  }
-  .example-2 .icon-content a svg {
+}
+
+.example-2 .icon-content a svg {
     position: relative;
     z-index: 1;
     width: 30px;
     height: 30px;
-  }
-  .example-2 .icon-content a:hover {
+}
+
+.example-2 .icon-content a:hover {
     color: white;
-  }
-  .example-2 .icon-content a .filled {
+}
+
+.example-2 .icon-content a .filled {
     position: absolute;
     top: auto;
     bottom: 0;
@@ -231,17 +275,19 @@ ul {
     height: 0;
     background-color: #000;
     transition: all 0.3s ease-in-out;
-  }
-  .example-2 .icon-content a:hover .filled {
+}
+
+.example-2 .icon-content a:hover .filled {
     height: 100%;
-  }
-  
-  .example-2 .icon-content a[data-social="github"] .filled,
-  .example-2 .icon-content a[data-social="github"] ~ .tooltip {
+}
+
+.example-2 .icon-content a[data-social="github"] .filled,
+.example-2 .icon-content a[data-social="github"] ~ .tooltip {
     background-color: #24262a;
-  }
-  .example-2 .icon-content a[data-social="instagram"] .filled,
-  .example-2 .icon-content a[data-social="instagram"] ~ .tooltip {
+}
+
+.example-2 .icon-content a[data-social="instagram"] .filled,
+.example-2 .icon-content a[data-social="instagram"] ~ .tooltip {
     background: linear-gradient(
       45deg,
       #405de6,
@@ -251,8 +297,4 @@ ul {
       #e1306c,
       #fd1f1f
     );
-  }
-
-  
-
-
+}

@@ -28,6 +28,8 @@ PROJETO TOTALMENTE ESTUDANTIL FEITO PARA FEIRA DE JOGOS DO ETE
 const questionElement = document.getElementById('question');
 const options = document.querySelectorAll('.option-btn');
 const timerElement = document.getElementById('timer');
+const hintElement = document.getElementById('hint');
+let dica = 'true';
 let respondeu = false; 
 let score = parseInt(localStorage.getItem('userScore')) || 0;
 let desafio2Finalizado = localStorage.getItem('desafio2Finalizado') === 'true'; 
@@ -39,7 +41,8 @@ const questions = [
     {
         question: "Qual é a fórmula química da água?",
         options: ["A) CO2", "B) NaCl", "C) H2O", "D) CH4"],
-        answer: "C"
+        answer: "C",
+        hint: "É composta por dois elementos químicos."
     }
 ];
 
@@ -104,6 +107,17 @@ function checkAnswer(answer) {
         }, 3000);
     }
 }
+
+function getHint() {
+    if (dica === 'true'){
+        const currentQuestion = questions[currentQuestionIndex];
+        hintElement.textContent = currentQuestion.hint; // Exibe a dica
+        score = (score - 5);
+        localStorage.setItem('userScore', score); // Atualiza o score no localStorage      
+        dica = 'false';  
+    }
+}
+
 if (!desafio1Finalizado) {
     alert('Você não tem acesso a essa pergunta ainda. Clique em OK para ir para a pergunta atual.');
     window.location.href = '/desafios/desafio1/desafio1.html'; 

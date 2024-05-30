@@ -24,6 +24,7 @@ PROJETO TOTALMENTE ESTUDANTIL FEITO PARA FEIRA DE JOGOS DO ETE
 const questionElement = document.getElementById('question');
 const options = document.querySelectorAll('.option-btn');
 const timerElement = document.getElementById('timer');
+const hintElement = document.getElementById('hint');
 let respondeu = false; // Variável para verificar se a pergunta foi respondida pro cara não flodar click e fazer varios pontos
 let score = parseInt(localStorage.getItem('userScore')) || 0; // pega o valor de score e passa pra INT
 let desafio1Finalizado = localStorage.getItem('desafio1Finalizado') === 'true'; // Variável para verificar se o desafio 1 foi finalizado
@@ -31,13 +32,16 @@ let acessoPag = localStorage.getItem('acessoPag'); // variavel com a info se o u
 let currentQuestionIndex = 0; // Índice da questão atual
 let timer; // Variável para armazenar o timer
 let timeLeft = 60; // 1 minuto para cada pergunta
+let dica = 'true';
 
 // Lista de perguntas
 const questions = [
     {
         question: "Qual é o processo pelo qual uma substância passa diretamente do estado sólido para o gasoso, sem passar pelo estado líquido?",
         options: ["A) Sublimação", "B) Fusão", "C) Evaporação", "D) Condensação"],
-        answer: "A"
+        answer: "A",
+        hint: "Este processo é comum em substâncias como o naftaleno, usado em bolas de naftalina."
+
     }
 ];
 
@@ -101,6 +105,15 @@ function checkAnswer(answer) {
     }
 }
 
+function getHint() {
+    if (dica === 'true'){
+        const currentQuestion = questions[currentQuestionIndex];
+        hintElement.textContent = currentQuestion.hint; // Exibe a dica
+        score = (score - 5);
+        localStorage.setItem('userScore', score); // Atualiza o score no localStorage      
+        dica = 'false';  
+    }
+}
 // Inicialização do quiz
 if (acessoPag === 'true') {
     if (desafio1Finalizado) {

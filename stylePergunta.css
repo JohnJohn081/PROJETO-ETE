@@ -10,7 +10,7 @@
 }
 
 body {
-    background: url("../../imagens/6701110.jpg");
+    background: url("../../imagens/fundo.jpg");
     background-size: cover;
     background-position: center;
     color: white;
@@ -88,4 +88,26 @@ h2 {
 
 .option-btn:active {
     transform: translateY(-1px);
+}
+
+#hint-btn {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #ff5722;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    display: inline-block;
+}
+
+#hint-btn:hover {
+    background-color: #e64a19;
+}
+
+#hint {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: yellow;
 }
