@@ -101,7 +101,7 @@ function checkAnswer(answer) {
                 localStorage.setItem('desafio1Finalizado', 'true');
                 window.location.href = '/desafios/desafio2/desafio2.html';
             }
-        }, 2000);
+        }, 1000);
     }
 }
 

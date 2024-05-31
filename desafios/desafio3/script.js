@@ -6,7 +6,7 @@ PROJETO TOTALMENTE ESTUDANTIL FEITO PARA FEIRA DE JOGOS DO ETE
 #ranking ou algo assim, não é legal nem justo!
 #DESENVOLVIDO POR John 1 TDS "A" ESCOLA TECNICA ESTADUAL DE PALMARES
 # DATA DE CRIAÇÃO: 24/05/2024
-# DATA DA ULTIMA MODIFICAÇÃO: 30/05/2024
+# DATA DA ULTIMA MODIFICAÇÃO: 31/05/2024
 # OUTROS PROJETOS EM: https://github.com/JohnJohn081
 # ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄       ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄   ▄▄▄▄▄▄▄▄▄▄▄ 
 #▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌     ▐░░░░░░░░░░░▌▐░░░░░░░░░░▌ ▐░░░░░░░░░░░▌
@@ -145,11 +145,22 @@ function addToRanking(name, userClass, score) {
         localStorage.setItem('userName', 'não modifique nada aqui, seja justo!')
         localStorage.setItem('turmaUser', 'turma Pendente')
         localStorage.setItem('acessoPag', 'false')
+        mostrarNotificacao("Pontuação registrada com Sucesso!");
         
     }).catch((error) => {
         console.error("Erro ao adicionar pontuação: ", error);
     });
 }    
+
+function mostrarNotificacao(mensagem) {
+    const notificacao = document.getElementById('notification');
+    notificacao.innerText = mensagem;
+    notificacao.className = 'notification show';
+    setTimeout(() => {
+        notificacao.className = notificacao.className.replace('show', '');
+    }, 3000);
+}
+
 
 function getHint() {
     if (dica === 'true'){
