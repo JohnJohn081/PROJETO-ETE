@@ -298,3 +298,75 @@ ul {
       #fd1f1f
     );
 }
+
+
+@media (max-width: 600px) {
+    /* Adicione aqui o código necessário para ajustes específicos para telas de celulares */
+    body {
+        background: url(imagens/fundo.jpg);
+        background-size: cover;
+        background-position: center;
+        font-size: 14px;
+    }
+
+    #home {
+        text-align: center;
+        font-size: 18px;
+        padding-right: 10px; 
+    }
+
+    #home h1 {
+        font-size: 32px;
+        text-align: center; 
+        color: #000;
+    }
+
+    #home a {
+        font-size: 20px;
+        margin-top: 0;
+    }
+
+    #sobre {
+        width: 90%;
+        margin: 10px auto;
+        padding: 10px;
+    }
+
+    #sobre h2 {
+        font-size: 28px;
+    }
+
+    #sobre p {
+        font-size: 16px;
+    }
+
+    #sobre h3 {
+        font-size: 20px;
+    }
+
+    #sobre ul {
+        flex-direction: column;
+        gap: 10px;
+        padding: 0;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .login-box,
+    .ranking-box {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .example-2 {
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .example-2 .icon-content {
+        margin: 10px 0;
+    }
+}
