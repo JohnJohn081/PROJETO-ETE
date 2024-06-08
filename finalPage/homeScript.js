@@ -44,7 +44,7 @@ const loadRanking = () => {
     pontoUser.innerHTML = '';
 
     const userScore = localStorage.getItem('userScore');
-    pontoUser.innerHTML = `<h2> Parabéns, você conseguiu ${userScore} pontos de 180!</h2>`; // cria um h2 com o numero atual do Score do user 
+    pontoUser.innerHTML = `<h2> Parabéns, você conseguiu ${userScore} pontos de 660!</h2>`; // cria um h2 com o numero atual do Score do user 
     
 
     db.collection("ranking")
@@ -55,16 +55,13 @@ const loadRanking = () => {
             querySnapshot.forEach((doc, index) => {
                 let data = doc.data();
                 let name = data.name.length > 15 ? data.name.substring(0, 16) + '...' : data.name;
-                rankingList.innerHTML += `<h3> ${name} - ${data.class} | ${data.score}/180 Pontos</h3>`;
+                rankingList.innerHTML += `<h3> ${name} - ${data.class} | ${data.score}/660 Pontos</h3>`;
             });
         })
         .catch((error) => {
             console.error("Erro ao obter documentos: ", error);
         });
         console.log("Status resetado com sucesso!");
-        localStorage.setItem('desafio1Finalizado', 'false');
-        localStorage.setItem('desafio2Finalizado', 'false');
-        localStorage.setItem('desafio3Finalizado', 'false');
         //localStorage.setItem('userScore', '0');
         localStorage.setItem('userName', 'não modifique nada aqui, seja justo!')
         localStorage.setItem('turmaUser', 'turma Pendente')

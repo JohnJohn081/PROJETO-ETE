@@ -6,7 +6,7 @@ PROJETO TOTALMENTE ESTUDANTIL FEITO PARA FEIRA DE JOGOS DO ETE
 #ranking ou algo assim, não é legal nem justo!
 #DESENVOLVIDO POR John 1 TDS "A" ESCOLA TECNICA ESTADUAL DE PALMARES
 # DATA DE CRIAÇÃO: 24/05/2024
-# DATA DA ULTIMA MODIFICAÇÃO: 31/05/2024
+# DATA DA ULTIMA MODIFICAÇÃO: 08/06/2024
 # OUTROS PROJETOS EM: https://github.com/JohnJohn081
 # ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄       ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄   ▄▄▄▄▄▄▄▄▄▄▄ 
 #▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌     ▐░░░░░░░░░░░▌▐░░░░░░░░░░▌ ▐░░░░░░░░░░░▌
@@ -22,25 +22,18 @@ PROJETO TOTALMENTE ESTUDANTIL FEITO PARA FEIRA DE JOGOS DO ETE
 
 -->*/
 
-
-
-
 const questionElement = document.getElementById('question');
 const options = document.querySelectorAll('.option-btn');
 const timerElement = document.getElementById('timer');
 const hintElement = document.getElementById('hint');
-
-let respondeu = false; 
-let score = parseInt(localStorage.getItem('userScore')) || 0;
-let desafio1Finalizado = localStorage.getItem('desafio1Finalizado') === 'true';  
-let desafio2Finalizado = localStorage.getItem('desafio2Finalizado') === 'true';  
-let desafio3Finalizado = localStorage.getItem('desafio3Finalizado') === 'true';  
 const name = localStorage.getItem('userName');
 const userClass = localStorage.getItem('turmaUser');
+let acessoPag = localStorage.getItem('acessoPag', 'true') === 'true'; // dá o acesso para pagina1
+let respondeu = false; 
+let score = parseInt(localStorage.getItem('userScore')) || 0;
+let desafioFinalizado = localStorage.getItem('desafioFinalizado') === 'true'; 
 let timer; // Variável para armazenar o timer
 let timeLeft = 60; // 1 minuto para cada pergunta
-let dica = 'true';
-
 
 const firebaseConfig = {
     apiKey: "AIzaSyAj449IcN89Ga0ax__Soer1-mD7VVjd7oM",
@@ -55,13 +48,77 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
+
+
 const questions = [
     {
-        question: "Qual é o termo usado para descrever a capacidade de uma substância para se dissolver em outra?",
-        options: ["A) Ionização", "B) Combustão", "C) Decomposição", "D) Solubilidade"],
+        question: "Qual é a principal fonte de energia para os seres vivos?",
+        options: ["A) Carboidratos", "B) Lipídios", "C) Proteínas", "D) Vitaminas"],
+        answer: "A",
+        hint: "É um macronutriente conhecido como açúcar."
+    },
+    {
+        question: "Quem propôs a teoria da evolução das espécies?",
+        options: ["A) Isaac Newton", "B) Albert Einstein", "C) Charles Darwin", "D) Galileo Galilei"],
+        answer: "C",
+        hint: "Foi um naturalista britânico."
+    },
+    {
+        question: "O que é fotossíntese?",
+        options: ["A) Processo de respiração celular", "B) Formação de proteínas", "C) Quebra de açúcares", "D) Transformação de luz em energia química"],
         answer: "D",
-        hint: "Pense no que acontece quando você mistura sal ou açúcar na água."
+        hint: "É um processo realizado pelas plantas."
+    },
+    {
+        question: "O que é uma célula?",
+        options: ["A) A menor unidade de um átomo", "B) A menor unidade funcional dos seres vivos", "C) Uma estrutura que apenas plantas possuem", "D) Um conjunto de tecidos"],
+        answer: "B",
+        hint: "É considerada a unidade básica da vida."
+    },
+    {
+        question: "O que é um ecossistema?",
+        options: ["A) Um grupo de células", "B) Conjunto de seres vivos e o ambiente onde vivem", "C) Apenas os organismos de uma determinada espécie", "D) A união de diferentes órgãos"],
+        answer: "B",
+        hint: "Inclui tanto os organismos vivos quanto os componentes não vivos."
+    },
+    {
+        question: "O que é a teoria da biogênese?",
+        options: ["A) Vida surge de matéria inanimada", "B) Vida surge de outros seres vivos", "C) Vida surgiu em condições extremas", "D) Vida é resultado de intervenção divina"],
+        answer: "B",
+        hint: "Esta teoria foi comprovada por Louis Pasteur."
+    },
+    {
+        question: "O que é a teoria da abiogênese?",
+        options: ["A) Vida surge de outros seres vivos", "B) Vida é uma criação espontânea de matéria inanimada", "C) Vida evolui de formas simples para complexas", "D) Vida é um fenômeno recente"],
+        answer: "B",
+        hint: "Também é conhecida como geração espontânea."
+    },
+    {
+        question: "Como eram as condições da Terra primitiva?",
+        options: ["A) Atmosfera rica em oxigênio", "B) Presença de organismos multicelulares", "C) Alta atividade vulcânica e raios", "D) Clima frio e estável"],
+        answer: "C",
+        hint: "As condições eram bastante inóspitas e instáveis."
+    },
+    {
+        question: "Qual é a principal ideia da teoria de Oparin e Haldane?",
+        options: ["A) Vida surgiu de outro planeta", "B) Vida surgiu de compostos orgânicos simples em condições primitivas", "C) Vida sempre existiu", "D) Vida surgiu pela intervenção de seres superiores"],
+        answer: "B",
+        hint: "A teoria sugere a formação de moléculas orgânicas complexas a partir de simples."
+    },
+    {
+        question: "Qual experimento ajudou a comprovar a teoria da biogênese?",
+        options: ["A) Experimento de Redi", "B) Experimento de Miller-Urey", "C) Experimento de Pasteur", "D) Experimento de Spallanzani"],
+        answer: "C",
+        hint: "Este experimento utilizou frascos de pescoço de cisne."
+    },
+    {
+        question: "Qual foi o principal resultado do experimento de Miller-Urey?",
+        options: ["A) Prova da biogênese", "B) Criação de vida a partir de matéria inanimada", "C) Formação de aminoácidos a partir de gases primitivos", "D) Demonstrar a presença de oxigênio na Terra primitiva"],
+        answer: "C",
+        hint: "Este experimento simulou as condições da Terra primitiva."
     }
+    
+    
 ];
 
 let currentQuestionIndex = 0;
@@ -69,9 +126,10 @@ let currentQuestionIndex = 0;
 function loadQuestion() {
     respondeu = false; 
     timeLeft = 60; // Reinicia o tempo
-
     const currentQuestion = questions[currentQuestionIndex];
     questionElement.textContent = currentQuestion.question;
+    hintElement.textContent = "";
+    
 
     options.forEach((option, index) => {
         option.textContent = currentQuestion.options[index];
@@ -79,7 +137,7 @@ function loadQuestion() {
     startTimer();
 }
 
-
+// Função para iniciar e atualizar o cronômetro a cada segundo
 function startTimer() {
     clearInterval(timer);
     timerElement.textContent = timeLeft;
@@ -88,67 +146,62 @@ function startTimer() {
         timerElement.textContent = timeLeft;
         if (timeLeft <= 0) {
             clearInterval(timer);
-            checkAnswer(null);                                                     // Se o tempo acabar, trata como resposta incorreta
+            checkAnswer(null); // Se o tempo acabar, trata como resposta incorreta
         }
     }, 1000);
 }
 
-
 function checkAnswer(answer) {
     const currentQuestion = questions[currentQuestionIndex];
     const selectedOption = document.querySelector('.option-btn:hover');
-    clearInterval(timer);                                                       // Para o cronômetro quando uma resposta é verificada
+    clearInterval(timer); // Para o cronômetro quando uma resposta é verificada
 
-    if (!respondeu) {
-        respondeu = true;
-        let points = Math.max(1 * (timeLeft));                     // Calcula os pontos baseados no tempo restante
+    if (!respondeu) { 
+        respondeu = true; 
+        let points = Math.max(1 * (timeLeft)); // Calcula os pontos baseados no tempo restante
 
         if (answer === currentQuestion.answer) {
             selectedOption.classList.add('correto');
-            score += points;
+            score += points; // Adiciona pontos se a resposta estiver correta
         } else {
             selectedOption.classList.add('errado');
         }
 
         localStorage.setItem('userScore', score); 
-        localStorage.setItem('desafio3Finalizado', 'true');
-        addToRanking(name, userClass, score);
 
         setTimeout(() => {
-            selectedOption.classList.remove('correct', 'wrong');
+            selectedOption.classList.remove('correto', 'errado');
             currentQuestionIndex++;
             if (currentQuestionIndex < questions.length) {
                 loadQuestion();
+                
             } else {
-                window.location.href = '/../../finalPage/home.html'; 
+                localStorage.setItem('acessoPag', 'false');
+                addToRanking(name, userClass, score);
+                mostrarNotificacao("Pontuação registrada com Sucesso!");
             }
-        }, 3000);
+        }, 1000);
     }
 }
 
+
 function addToRanking(name, userClass, score) {
-
-
     localStorage.setItem('userName', name);
     localStorage.setItem('turmaUser', userClass);
-
    db.collection("ranking").doc(name).set({ 
         name: name,
         class: userClass,
         score: score
     }).then((docRef) => {
         console.log("Pontuação adicionada com sucesso!");
-        localStorage.setItem('desafio1Finalizado', 'false');
-        localStorage.setItem('desafio2Finalizado', 'false');
-        localStorage.setItem('desafio3Finalizado', 'false');
         //localStorage.setItem('userScore', '0');
         localStorage.setItem('userName', 'não modifique nada aqui, seja justo!')
         localStorage.setItem('turmaUser', 'turma Pendente')
         localStorage.setItem('acessoPag', 'false')
-        mostrarNotificacao("Pontuação registrada com Sucesso!");
-        
+        window.location.href = '/../finalPage/home.html'; 
     }).catch((error) => {
         console.error("Erro ao adicionar pontuação: ", error);
+
     });
 }    
 
@@ -162,25 +215,17 @@ function mostrarNotificacao(mensagem) {
 }
 
 
+
 function getHint() {
-    if (dica === 'true'){
         const currentQuestion = questions[currentQuestionIndex];
         hintElement.textContent = currentQuestion.hint; // Exibe a dica
-        score = (score - 5);
+        score -= 40;
         localStorage.setItem('userScore', score); // Atualiza o score no localStorage      
-        dica = 'false';  
-    }
 }
 
-if (!desafio1Finalizado) {
-    alert('Você não tem acesso a essa pergunta ainda. Clique em OK para ir para a pergunta atual.');
-    window.location.href = '/desafios/desafio1/desafio1.html'; 
-} else if (!desafio2Finalizado) {
-    alert('Você não tem acesso a essa pergunta ainda. Clique em OK para ir para a pergunta atual.');
-    window.location.href = '/desafios/desafio2/desafio2.html'; 
-} else if (desafio3Finalizado) {
-    alert('Essa pergunta já foi respondida. Clique em OK para ir para a próxima pergunta.');
-    window.location.href = '/../../finalPage/home.html'; 
+if (!acessoPag) {
+    alert('Usuario já respondeu a pergunta, clique em OK para iniciar o quiz');
+    window.location.href = '/../../index.html'; 
 } else {
     options.forEach(option => {
         option.addEventListener('click', () => {
@@ -189,7 +234,7 @@ if (!desafio1Finalizado) {
                 respondeu = true; 
             }
         });
-    });
+    });  
 
     loadQuestion();
 }

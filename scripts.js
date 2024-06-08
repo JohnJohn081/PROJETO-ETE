@@ -41,7 +41,7 @@ const db = firebase.firestore();
 
 
 // adicionar ao ranking função main
-function addToRanking(score) {
+function salvaDataUser() {
     const name = document.getElementById('name').value; 
     const userClass = document.getElementById('class').value; 
 
@@ -66,7 +66,7 @@ const loadRanking = () => {
             querySnapshot.forEach((doc, index) => {
                 let data = doc.data();
                 let name = data.name.length > 15 ? data.name.substring(0, 16) + '...' : data.name;
-                rankingList.innerHTML += `<h3> ${name} - ${data.class} | ${data.score}/180 Pontos</h3>`;
+                rankingList.innerHTML += `<h3> ${name} - ${data.class} | ${data.score}/660 Pontos</h3>`;
             });
         })
         .catch((error) => {
@@ -80,10 +80,11 @@ document.getElementById('submitBtn').addEventListener('click', (e) => {
     const name = document.getElementById('name').value;
     const userClass = document.getElementById('class').value;
     
-    addToRanking(name, userClass); // Chamando addToRanking aqui o addToRanking ele não add no ranking oficial, ele armazena as info do user
+    salvaDataUser(name, userClass); // Chamando addToRanking aqui o addToRanking ele não add no ranking oficial, ele armazena as info do user
     localStorage.setItem('acessoPag', 'true') // dá o acesso para pagina1
     setTimeout(() => {
-        window.location.href = '/desafios/desafio1/desafio1.html';
+        
+        window.location.href = '/desafios/desafios.html';
     }, 1000); 
 });
 
