@@ -6,7 +6,7 @@ PROJETO TOTALMENTE ESTUDANTIL FEITO PARA FEIRA DE JOGOS DO ETE
 #ranking ou algo assim, não é legal nem justo!
 #DESENVOLVIDO POR John 1 TDS "A" ESCOLA TECNICA ESTADUAL DE PALMARES
 # DATA DE CRIAÇÃO: 24/05/2024
-# DATA DA ULTIMA MODIFICAÇÃO: 08/06/2024
+# DATA DA ULTIMA MODIFICAÇÃO: 09/06/2024
 # OUTROS PROJETOS EM: https://github.com/JohnJohn081
 # ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄       ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄   ▄▄▄▄▄▄▄▄▄▄▄ 
 #▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌     ▐░░░░░░░░░░░▌▐░░░░░░░░░░▌ ▐░░░░░░░░░░░▌
@@ -31,9 +31,10 @@ const userClass = localStorage.getItem('turmaUser');
 let acessoPag = localStorage.getItem('acessoPag', 'true') === 'true'; // dá o acesso para pagina1
 let respondeu = false; 
 let score = parseInt(localStorage.getItem('userScore')) || 0;
-let desafioFinalizado = localStorage.getItem('desafioFinalizado') === 'true'; 
 let timer; // Variável para armazenar o timer
 let timeLeft = 60; // 1 minuto para cada pergunta
+let dicas = 3; // quantidade de dicas
+let usouDica = 'false'; // variavel utilizado na função getHint
 
 const firebaseConfig = {
     apiKey: "AIzaSyAj449IcN89Ga0ax__Soer1-mD7VVjd7oM",
@@ -83,8 +84,8 @@ const questions = [
     },
     {
         question: "O que é a teoria da biogênese?",
-        options: ["A) Vida surge de matéria inanimada", "B) Vida surge de outros seres vivos", "C) Vida surgiu em condições extremas", "D) Vida é resultado de intervenção divina"],
-        answer: "B",
+        options: ["A) Vida surge de matéria inanimada", "B) Vida surgiu em condições extremas ", "C) Vida surge de outros seres vivos", "D) Vida é resultado de intervenção divina"],
+        answer: "C",
         hint: "Esta teoria foi comprovada por Louis Pasteur."
     },
     {
@@ -95,8 +96,8 @@ const questions = [
     },
     {
         question: "Como eram as condições da Terra primitiva?",
-        options: ["A) Atmosfera rica em oxigênio", "B) Presença de organismos multicelulares", "C) Alta atividade vulcânica e raios", "D) Clima frio e estável"],
-        answer: "C",
+        options: ["A) Alta atividade vulcânica e raios", "B) Presença de organismos multicelulares", "C) Atmosfera rica em oxigênio", "D) Clima frio e estável"],
+        answer: "A",
         hint: "As condições eram bastante inóspitas e instáveis."
     },
     {
@@ -107,13 +108,13 @@ const questions = [
     },
     {
         question: "Qual experimento ajudou a comprovar a teoria da biogênese?",
-        options: ["A) Experimento de Redi", "B) Experimento de Miller-Urey", "C) Experimento de Pasteur", "D) Experimento de Spallanzani"],
-        answer: "C",
+        options: ["A) Experimento de Redi", "B) Experimento de Miller-Urey", "C) Experimento de Spallanzani", "D) Experimento de Pasteur"],
+        answer: "D",
         hint: "Este experimento utilizou frascos de pescoço de cisne."
     },
     {
         question: "Qual foi o principal resultado do experimento de Miller-Urey?",
-        options: ["A) Prova da biogênese", "B) Criação de vida a partir de matéria inanimada", "C) Formação de aminoácidos a partir de gases primitivos", "D) Demonstrar a presença de oxigênio na Terra primitiva"],
+        options: ["A) Formação de aminoácidos a partir de gases primitivos", "B) Criação de vida a partir de matéria inanimada", "C) Prova da biogênese", "D) Demonstrar a presença de oxigênio na Terra primitiva"],
         answer: "C",
         hint: "Este experimento simulou as condições da Terra primitiva."
     }
@@ -146,7 +147,17 @@ function startTimer() {
         timerElement.textContent = timeLeft;
         if (timeLeft <= 0) {
             clearInterval(timer);
-            checkAnswer(null); // Se o tempo acabar, trata como resposta incorreta
+            setTimeout(() => {
+                currentQuestionIndex++;
+                if (currentQuestionIndex < questions.length) {
+                    loadQuestion();
+                    
+                } else {
+                    localStorage.setItem('acessoPag', 'false');
+                    addToRanking(name, userClass, score);
+                    mostrarNotificacao("Pontuação registrada com Sucesso!");
+                }
+            }, 1000);
         }
     }, 1000);
 }
@@ -158,13 +169,14 @@ function checkAnswer(answer) {
 
     if (!respondeu) { 
         respondeu = true; 
-        let points = Math.max(1 * (timeLeft)); // Calcula os pontos baseados no tempo restante
 
         if (answer === currentQuestion.answer) {
             selectedOption.classList.add('correto');
-            score += points; // Adiciona pontos se a resposta estiver correta
+            score += 1; // Adiciona pontos se a resposta estiver correta
+            usouDica = 'false';
         } else {
             selectedOption.classList.add('errado');
+            usouDica = 'false';
         }
 
         localStorage.setItem('userScore', score); 
@@ -215,14 +227,28 @@ function mostrarNotificacao(mensagem) {
 }
 
 
-
+// função para dicas ()
 function getHint() {
-        const currentQuestion = questions[currentQuestionIndex];
-        hintElement.textContent = currentQuestion.hint; // Exibe a dica
-        score -= 40;
-        localStorage.setItem('userScore', score); // Atualiza o score no localStorage      
+    if (usouDica === 'false'){
+         if (dicas > 0){
+            const currentQuestion = questions[currentQuestionIndex];
+            hintElement.textContent = currentQuestion.hint; // Exibe a dica
+            usouDica = 'true'; // variavel pra ele não flodar dica e perder todas as dicas
+            dicas -= 1; // variavel dica sendo modificada para o valor atual
+            mostrarNotificacao('Dicas' + dicas + '/3') 
+            localStorage.setItem('userScore', score); // Atualiza o score no localStorage      
+        }
+        else{
+            mostrarNotificacao("Voce já utilizou todas as dicas");
+        }
+    }
+    else{
+        console.log('voce ja utilizou dica');
+    }
 }
 
+
+// verificação basica verificar acesso que só é consedido após o usuario clicar no botão iniciar submitBtn
 if (!acessoPag) {
     alert('Usuario já respondeu a pergunta, clique em OK para iniciar o quiz');
     window.location.href = '/../../index.html'; 
@@ -238,3 +264,5 @@ if (!acessoPag) {
 
     loadQuestion();
 }
+
+window.onload = localStorage.setItem('userScore', 0), score = 0; // Atualiza o score no localStorage     
