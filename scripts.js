@@ -66,7 +66,7 @@ const loadRanking = () => {
             querySnapshot.forEach((doc, index) => {
                 let data = doc.data();
                 let name = data.name.length > 15 ? data.name.substring(0, 16) + '...' : data.name;
-                rankingList.innerHTML += `<h3> ${name} - ${data.class} | ${data.score}/660 Pontos</h3>`;
+                rankingList.innerHTML += `<h3> ${name} - ${data.class} | ${data.score}/11 Pontos</h3>`;
             });
         })
         .catch((error) => {

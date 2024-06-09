@@ -299,9 +299,8 @@ ul {
     );
 }
 
-
+/*CSS MOBILE*/
 @media (max-width: 600px) {
-    /* Adicione aqui o código necessário para ajustes específicos para telas de celulares */
     body {
         background: url(imagens/fundo.jpg);
         background-size: cover;
