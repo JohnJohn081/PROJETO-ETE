@@ -115,7 +115,7 @@ const questions = [
     {
         question: "Qual foi o principal resultado do experimento de Miller-Urey?",
         options: ["A) Formação de aminoácidos a partir de gases primitivos", "B) Criação de vida a partir de matéria inanimada", "C) Prova da biogênese", "D) Demonstrar a presença de oxigênio na Terra primitiva"],
-        answer: "C",
+        answer: "A",
         hint: "Este experimento simulou as condições da Terra primitiva."
     }
     
