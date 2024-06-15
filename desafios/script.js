@@ -117,6 +117,30 @@ const questions = [
         options: ["A) Formação de aminoácidos a partir de gases primitivos", "B) Criação de vida a partir de matéria inanimada", "C) Prova da biogênese", "D) Demonstrar a presença de oxigênio na Terra primitiva"],
         answer: "A",
         hint: "Este experimento simulou as condições da Terra primitiva."
+    },
+    {
+        question: "Qual é o papel do DNA?",
+        options: ["A) Catalisar reações químicas", "B) Transportar oxigênio", "C) Armazenar informação genética", "D) Regular a pressão sanguínea"],
+        answer: "C",
+        hint: "Ele contém as instruções genéticas usadas no desenvolvimento e funcionamento de todos os organismos vivos."
+    },
+    {
+        question: "Qual é o principal componente da parede celular das plantas?",
+        options: ["A) Celulose", "B) Quitina", "C) Glicogênio", "D) Amido"],
+        answer: "A",
+        hint: "É um polissacarídeo que confere rigidez à parede celular."
+    },
+    {
+        question: "O que propõe a teoria endossimbiótica?",
+        options: ["A) Evolução de órgãos complexos a partir de simples", "B) Origem da vida a partir de compostos orgânicos", "C) Origem das células eucarióticas a partir de procarióticas", "D) Evolução das espécies por seleção natural"],
+        answer: "C",
+        hint: "Sugere que organelas como mitocôndrias e cloroplastos eram organismos independentes."
+    },
+    {
+        question: "O que é uma mutação genética?",
+        options: ["A) Um tipo de seleção natural", "B) Uma mudança na sequência de DNA", "C) Um processo de divisão celular", "D) Um mecanismo de defesa imunológica"],
+        answer: "B",
+        hint: "Pode ocorrer de forma espontânea ou ser induzida por fatores externos."
     }
     
     
@@ -186,7 +210,7 @@ function checkAnswer(answer) {
             currentQuestionIndex++;
             if (currentQuestionIndex < questions.length) {
                 loadQuestion();
-                
+                mostrarNotificacao(currentQuestionIndex + "/15")                
             } else {
                 localStorage.setItem('acessoPag', 'false');
                 addToRanking(name, userClass, score);
@@ -196,7 +220,8 @@ function checkAnswer(answer) {
     }
 }
 
-
+// não utilize "/" dentro do seu userName pois isso vai causar um erro de document no firebase!
+// função pra adicionar o User e seu Score na firebase. 
 function addToRanking(name, userClass, score) {
     localStorage.setItem('userName', name);
     localStorage.setItem('turmaUser', userClass);
