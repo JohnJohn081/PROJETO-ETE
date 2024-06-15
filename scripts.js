@@ -35,32 +35,25 @@ const firebaseConfig = {
     storageBucket: "ete-john.appspot.com",
     messagingSenderId: "242093850786",
     appId: "1:242093850786:web:b41b6eb519a9b5668e17fb"
-  };
+};
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-
-// adicionar ao ranking função main
-function salvaDataUser() {
-    const name = document.getElementById('name').value; 
-    const userClass = document.getElementById('class').value; 
-
-   
-    localStorage.setItem('userScore', 0); // manter 0, toda vez que iniciar SCORE volta pra 0
+// Função principal para adicionar ao ranking
+function salvaDataUser(name, userClass) {
+    localStorage.setItem('userScore', 0); // Manter 0, toda vez que iniciar SCORE volta pra 0
     localStorage.setItem('userName', name);
     localStorage.setItem('turmaUser', userClass);
-
 }
 
-
-// Função para carregar o ranking da firebase
+// Função para carregar o ranking do Firebase
 const loadRanking = () => {
     const rankingList = document.getElementById('rankingList');
     rankingList.innerHTML = '';
 
     db.collection("ranking")
         .orderBy("score", "desc")
-        .limit(10) // limite do ranking botei ate o 10 lugar só
+        .limit(10) // Limite do ranking até o 10º lugar
         .get()
         .then((querySnapshot) => {
             querySnapshot.forEach((doc, index) => {
@@ -74,22 +67,26 @@ const loadRanking = () => {
         });
 };
 
-// adiciona um eventLisstener no botão submitBtn 
+// Adiciona um eventListener no botão submitBtn
 document.getElementById('submitBtn').addEventListener('click', (e) => {
     e.preventDefault();
-    const name = document.getElementById('name').value;
+
+    let name = document.getElementById('name').value.trim(); // Remove espaços em branco nas extremidades
     const userClass = document.getElementById('class').value;
-    
-    salvaDataUser(name, userClass); // Chamando addToRanking aqui o addToRanking ele não add no ranking oficial, ele armazena as info do user
-    localStorage.setItem('acessoPag', 'true') // dá o acesso para pagina1
+
+    console.log('Nome:', name);
+    console.log('Classe:', userClass);
+    if (name === "") {
+        name = "aluno sem nome1";
+        console.log('Nome vazio ou espaço, definindo como:', name);
+    }
+    salvaDataUser(name, userClass); // Chama a função com os parâmetros atualizados
+    localStorage.setItem('acessoPag', 'true'); // Dá o acesso para a página 1
+
     setTimeout(() => {
-        
         window.location.href = '/desafios/desafios.html';
-    }, 1000); 
+    }, 1000);
 });
 
-
-
-
-// carrega o ranking quando a página é carregada
+// Carrega o ranking quando a página é carregada
 window.onload = loadRanking;
