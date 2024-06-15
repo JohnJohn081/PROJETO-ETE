@@ -39,11 +39,22 @@ const db = firebase.firestore();
 // Função para carregar o ranking do firebase
 const loadRanking = () => {
     const rankingList = document.getElementById('rankingList');
-    const pontoUser = document.getElementById('pontos')
+    const pontoUser = document.getElementById('pontos');
+    const userNameElement = document.getElementById('userName');
+    const turmaUserElement = document.getElementById('turmaUser');
+    const scoreElement = document.getElementById('score');
+
     rankingList.innerHTML = '';
     pontoUser.innerHTML = '';
 
     const userScore = localStorage.getItem('userScore');
+    const userName = localStorage.getItem('userName');
+    const turmaUser = localStorage.getItem('turmaUser');
+
+    // Atualiza as informações na lista 'ul'
+    userNameElement.textContent = userName.length > 23 ? userName.substring(0, 23) + '...' : userName;
+    turmaUserElement.textContent = turmaUser;
+    scoreElement.textContent = userScore;
     pontoUser.innerHTML = `<h2> Parabéns, você conseguiu ${userScore} pontos de 15!</h2>`; // cria um h2 com o numero atual do Score do user 
     
 
@@ -63,9 +74,9 @@ const loadRanking = () => {
         });
         console.log("Status resetado com sucesso!");
         //localStorage.setItem('userScore', '0');
-        localStorage.setItem('userName', 'não modifique nada aqui, seja justo!')
-        localStorage.setItem('turmaUser', 'turma Pendente')
-        localStorage.setItem('acessoPag', 'false')
+        //localStorage.setItem('userName', 'não modifique nada aqui, seja justo!')
+        //localStorage.setItem('turmaUser', 'turma Pendente')
+        //localStorage.setItem('acessoPag', 'false')
 };
 
 

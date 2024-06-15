@@ -60,6 +60,9 @@ const loadRanking = () => {
                 let data = doc.data();
                 let name = data.name.length > 15 ? data.name.substring(0, 16) + '...' : data.name;
                 rankingList.innerHTML += `<h3> ${name} - ${data.class} | ${data.score}/15 Pontos</h3>`;
+                localStorage.setItem('userName', 'não modifique nada aqui, seja justo!')
+                localStorage.setItem('turmaUser', 'turma Pendente')
+                localStorage.setItem('acessoPag', 'false')
             });
         })
         .catch((error) => {

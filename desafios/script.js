@@ -232,8 +232,8 @@ function addToRanking(name, userClass, score) {
     }).then((docRef) => {
         console.log("Pontuação adicionada com sucesso!");
         //localStorage.setItem('userScore', '0');
-        localStorage.setItem('userName', 'não modifique nada aqui, seja justo!')
-        localStorage.setItem('turmaUser', 'turma Pendente')
+        //localStorage.setItem('userName', 'não modifique nada aqui, seja justo!')
+        //localStorage.setItem('turmaUser', 'turma Pendente')
         localStorage.setItem('acessoPag', 'false')
         window.location.href = '/../finalPage/home.html'; 
     }).catch((error) => {
