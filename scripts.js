@@ -1,8 +1,7 @@
 /*<!--
 PROJETO TOTALMENTE ESTUDANTIL FEITO PARA FEIRA DE JOGOS DO ETE
 # 
-#INFORMAÇÕES UTIES: O site tem um sistema de segurança basico, utiliza meios do navegador para bloquear o acesso de algumas pagina antes da hora
-#Se voce é alguem olhando o codigo fonte esse texto, não faça algo que quebre o codigo e faça voce ter vantagem no 
+#Se voce é alguem olhando o codigo fonte, não faça algo que quebre o codigo e faça voce ter vantagem no 
 #ranking ou algo assim, não é legal nem justo!
 #DESENVOLVIDO POR John 1 TDS "A" ESCOLA TECNICA ESTADUAL DE PALMARES
 # DATA DE CRIAÇÃO: 24/05/2024
@@ -23,10 +22,6 @@ PROJETO TOTALMENTE ESTUDANTIL FEITO PARA FEIRA DE JOGOS DO ETE
 -->*/
 
 
-
-
-
-
 // Config do banco de Dados que armazena o Ranking
 const firebaseConfig = {
     apiKey: "AIzaSyAj449IcN89Ga0ax__Soer1-mD7VVjd7oM",
@@ -41,7 +36,7 @@ const db = firebase.firestore();
 
 // Função principal para adicionar ao ranking
 function salvaDataUser(name, userClass) {
-    localStorage.setItem('userScore', 0); // Manter 0, toda vez que iniciar SCORE volta pra 0
+    localStorage.setItem('userScore', 0); 
     localStorage.setItem('userName', name);
     localStorage.setItem('turmaUser', userClass);
 }

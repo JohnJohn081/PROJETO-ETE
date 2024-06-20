@@ -1,8 +1,7 @@
 /*<!--
 PROJETO TOTALMENTE ESTUDANTIL FEITO PARA FEIRA DE JOGOS DO ETE
 # 
-#INFORMAÇÕES UTIES: O site tem um sistema de segurança basico, utiliza meios do navegador para bloquear o acesso de algumas pagina antes da hora
-#Se voce é alguem olhando o codigo fonte esse texto, não faça algo que quebre o codigo e faça voce ter vantagem no 
+#Se voce é alguem olhando o codigo fonte, não faça algo que quebre o codigo e faça voce ter vantagem no 
 #ranking ou algo assim, não é legal nem justo!
 #DESENVOLVIDO POR John 1 TDS "A" ESCOLA TECNICA ESTADUAL DE PALMARES
 # DATA DE CRIAÇÃO: 24/05/2024
@@ -34,7 +33,7 @@ let score = parseInt(localStorage.getItem('userScore')) || 0;
 let timer; // Variável para armazenar o timer
 let timeLeft = 60; // 1 minuto para cada pergunta
 let dicas = 3; // quantidade de dicas
-let usouDica = 'false'; // variavel utilizado na função getHint
+let usouDica = 'false'; // variavel utilizado na função getHint(Dica)
 
 const firebaseConfig = {
     apiKey: "AIzaSyAj449IcN89Ga0ax__Soer1-mD7VVjd7oM",
@@ -50,7 +49,7 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
 
-
+// Respostas do quiz e o sistema que carrega ele, facilmente acessado pelo Aluno caso tenha conhecimento necessario para tal ato
 const questions = [
     {
         question: "Qual é a principal fonte de energia para os seres vivos?",
@@ -148,6 +147,7 @@ const questions = [
 
 let currentQuestionIndex = 0;
 
+// Função que carrega a proxima pergunta
 function loadQuestion() {
     respondeu = false; 
     timeLeft = 60; // Reinicia o tempo
@@ -186,6 +186,7 @@ function startTimer() {
     }, 1000);
 }
 
+// função que verifica se a resposta é certa ou não
 function checkAnswer(answer) {
     const currentQuestion = questions[currentQuestionIndex];
     const selectedOption = document.querySelector('.option-btn:hover');
@@ -209,7 +210,7 @@ function checkAnswer(answer) {
             selectedOption.classList.remove('correto', 'errado');
             currentQuestionIndex++;
             if (currentQuestionIndex < questions.length) {
-                loadQuestion();
+                loadQuestion(); // chama a função que carrega a proxima pergunta
                 mostrarNotificacao(currentQuestionIndex + "/15")                
             } else {
                 localStorage.setItem('acessoPag', 'false');
@@ -231,9 +232,7 @@ function addToRanking(name, userClass, score) {
         score: score
     }).then((docRef) => {
         console.log("Pontuação adicionada com sucesso!");
-        //localStorage.setItem('userScore', '0');
-        //localStorage.setItem('userName', 'não modifique nada aqui, seja justo!')
-        //localStorage.setItem('turmaUser', 'turma Pendente')
+
         localStorage.setItem('acessoPag', 'false')
         window.location.href = '/../finalPage/home.html'; 
     }).catch((error) => {

@@ -1,8 +1,7 @@
 /*<!--
 PROJETO TOTALMENTE ESTUDANTIL FEITO PARA FEIRA DE JOGOS DO ETE
 # 
-#INFORMAÇÕES UTIES: O site tem um sistema de segurança basico, utiliza meios do navegador para bloquear o acesso de algumas pagina antes da hora
-#Se voce é alguem olhando o codigo fonte esse texto, não faça algo que quebre o codigo e faça voce ter vantagem no 
+#Se voce é alguem olhando o codigo fonte, não faça algo que quebre o codigo e faça voce ter vantagem no 
 #ranking ou algo assim, não é legal nem justo!
 #DESENVOLVIDO POR John 1 TDS "A" ESCOLA TECNICA ESTADUAL DE PALMARES
 # DATA DE CRIAÇÃO: 24/05/2024
@@ -73,10 +72,6 @@ const loadRanking = () => {
             console.error("Erro ao obter documentos: ", error);
         });
         console.log("Status resetado com sucesso!");
-        //localStorage.setItem('userScore', '0');
-        //localStorage.setItem('userName', 'não modifique nada aqui, seja justo!')
-        //localStorage.setItem('turmaUser', 'turma Pendente')
-        //localStorage.setItem('acessoPag', 'false')
 };
 
 
