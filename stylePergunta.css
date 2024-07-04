@@ -17,7 +17,7 @@ body {
     background-position: center;
     color: white;
     font-family: Arial, sans-serif;
-    position: relative; /* Add this to make #timer-container positioning work */
+    position: relative;
 }
 
 .quiz-container {
