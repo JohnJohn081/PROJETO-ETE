@@ -5,7 +5,7 @@ PROJETO TOTALMENTE ESTUDANTIL FEITO PARA FEIRA DE JOGOS DO ETE
 #Se voce é alguem olhando o codigo fonte esse texto, não faça algo que quebre o codigo e faça voce ter vantagem no 
 #ranking ou algo assim, não é legal nem justo!
 #DESENVOLVIDO POR John 1 TDS "A" ESCOLA TECNICA ESTADUAL DE PALMARES
-# DATA DE CRIAÇÃO: 24/05/2024
+# DATA DE CRIAÇÃO: 29/07/2024
 # DATA DA ULTIMA MODIFICAÇÃO: 29/07/2024
 # OUTROS PROJETOS EM: https://github.com/JohnJohn081
 # ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄       ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄   ▄▄▄▄▄▄▄▄▄▄▄ 
@@ -23,7 +23,6 @@ PROJETO TOTALMENTE ESTUDANTIL FEITO PARA FEIRA DE JOGOS DO ETE
 -->
 
 
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -32,6 +31,19 @@ PROJETO TOTALMENTE ESTUDANTIL FEITO PARA FEIRA DE JOGOS DO ETE
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PROJETO ETE</title>
+    <script>
+        // isso daqui ele vai ver se é celular o navegador tlg?
+        function isMobile() {
+            return /Mobi|Android/i.test(navigator.userAgent);
+        }
+
+        // se for ele manda pra uma pagina pq nao quero programar uma css so pra celular pra essa pagina :D
+        window.onload = function() {
+            if (isMobile()) {
+                window.location.href = 'erro.html';
+            }
+        }
+    </script>
 </head>
 <body>
     <div id="home">
@@ -41,54 +53,65 @@ PROJETO TOTALMENTE ESTUDANTIL FEITO PARA FEIRA DE JOGOS DO ETE
         <a href="dev.html">Desenvolvedores</a>
     </div>
 
-    <div class="container">
-        <div class="login-box">
-            <form id="rankingForm">
-                <div class="user-box">
-                    <input type="text" name="name" id="name" required="">
-                    <label>Seu Nome</label>
-                </div>
-                <div class="user-box">
-                    <select name="class" id="class" required="">
-                        <optgroup label="TDS">
-                            <option value="1TDS A">1 TDS A</option>
-                            <option value="1TDS B">1 TDS B</option>
-                            <option value="2TDS A">2 TDS A</option>
-                            <option value="2TDS B">2 TDS B</option>
-                            <option value="3TDS A">3 TDS A</option>
-                            <option value="3TDS B">3 TDS B</option>
-                        </optgroup>
-                        <optgroup label="ADM">
-                            <option value="1ADM A">1 ADM A</option>
-                            <option value="2ADM A">2 ADM A</option>
-                            <option value="3ADM A">3 ADM A</option>
-                            <option value="1ADM B">1 ADM B</option>
-                            <option value="2ADM B">2 ADM B</option>
-                            <option value="3ADM B">3 ADM B</option>
-                        </optgroup>   
-                        <optgroup label="Outros">
-                            <option value="AMIGO">Amigo/Visitante</option>
-                        </optgroup>                     
-                    </select>
-                    <label>Escolha sua Turma</label>
-                </div>
-                <center>
-                    <a href="#" id="submitBtn">
-                        INICIAR
-                        <span></span>
-                    </a>
-                </center>
-            </form>
+    <center><div class="animated-border" style="margin-top: -50px;">
+        <h1>DESENVOLVEDORES</h1>
+    </div></center>
+        <div id="image-container">
+        <div class="image-item">
+            <a href="https://www.instagram.com/bellymaysa_/" target="_blank">
+                <img src="imagens/bellyDedinho.png" alt="Imagem 1">
+            </a>
         </div>
-
-        <div class="ranking-box">
-            <h2>Ranking</h2>
-            <div id="rankingList"></div>
+        <div class="image-item">
+            <a href="https://www.instagram.com/ellice_caroline13/" target="_blank">
+                <img src="imagens/elliceDeHelicoptero.png" alt="Imagem 2">
+            </a>
+        </div>
+        <div class="image-item">
+            <a href="https://www.instagram.com/franciely_s3/" target="_blank">
+                <img src="imagens/franci.png" alt="Imagem 3">
+            </a>
+        </div>
+        <div class="image-item">
+            <a href="https://www.instagram.com/georgiaditoo/" target="_blank">
+                <img src="imagens/Georgia.png" alt="Imagem 4">
+            </a>
+        </div>
+        <div class="image-item">
+            <a href="https://www.instagram.com/isabella_.c/" target="_blank">
+                <img src="imagens/isabella.png" alt="Imagem 5">
+            </a>
+        </div>
+        <div class="image-item">
+            <a href="https://www.instagram.com/jamilly_mariane08/" target="_blank">
+                <img src="imagens/jamillypng.png" alt="Imagem 6">
+            </a>
+        </div>
+        <div class="image-item">
+            <a href="https://www.instagram.com/_lluiza.a/" target="_blank">
+                <img src="imagens/Lulu.png" alt="Imagem 7">
+            </a>
+        </div>
+        <div class="image-item">
+            <a href="https://www.instagram.com/nicolyycasttro/" target="_blank">
+                <img src="imagens/nicolly.png" alt="Imagem 8">
+            </a>
+        </div>
+        <div class="image-item">
+            <a href="https://www.instagram.com/yasminth.08/" target="_blank">
+                <img src="imagens/YasminYaYa.png" alt="Imagem 9">
+            </a>
+        </div>
+        <div class="image-item">
+            <a href="https://www.instagram.com/ritacn5/" target="_blank">
+                <img src="imagens/RitinhaPressao.png" alt="Imagem 11">
+            </a>
+        </div>
+        <div class="image-item">
+            <a href="https://www.instagram.com/_johnvx/" target="_blank">
+                <img src="imagens/JohnJohn.png" alt="Imagem 10">
+            </a>
         </div>
     </div>
-
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="scripts.js"></script>
 </body>
 </html>
