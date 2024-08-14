@@ -78,6 +78,17 @@ PROJETO TOTALMENTE ESTUDANTIL FEITO PARA FEIRA DE JOGOS DO ETE
                         <span></span>
                     </a>
                 </center>
+                <!--Ate então teste, não oficial!-->
+                <div class="materiaSelect">
+                    <label for="materias">Selecione uma Matéria:</label>
+                    <select name="materias" id="materias">
+                        <option value="">Selecione a materia</option>
+                        <option value="https://johnprojeto.netlify.app/">Biologia</option>
+                        <option value="">Em breve</option>
+                        <option value="">Em breve</option>
+                    </select>
+                </div>
+                
             </form>
         </div>
 
@@ -90,5 +101,14 @@ PROJETO TOTALMENTE ESTUDANTIL FEITO PARA FEIRA DE JOGOS DO ETE
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="scripts.js"></script>
+    <script>
+        // JavaScript para redirecionar ao selecionar uma opção
+        document.getElementById('materias').addEventListener('change', function() {
+            var url = this.value;
+            if (url) {
+                window.location.href = url; // Redireciona para o site selecionado
+            }
+        });
+    </script>
 </body>
 </html>

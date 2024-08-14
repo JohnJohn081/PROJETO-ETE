@@ -379,3 +379,44 @@ ul {
         background-position: 0% 0%;
     }
 }
+
+/*CSS MATERIA SELECT TLG? KKK QUE COMENTARIO É ESSE VEI*/
+
+.materiaSelect {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.materiaSelect label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.materiaSelect select {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    color: #333;
+    border: 2px solid #e24646;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    appearance: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.materiaSelect select:hover {
+    border-color: #40e2ff;
+    background-color: #ffffff;
+    color: #333;
+}
+
+.materiaSelect select:focus {
+    outline: none;
+    border-color: #0051ff;
+    background-color: #ffffff;
+    color: #333;
+}
