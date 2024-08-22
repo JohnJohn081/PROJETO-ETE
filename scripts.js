@@ -54,8 +54,8 @@ const loadRanking = () => {
             querySnapshot.forEach((doc, index) => {
                 let data = doc.data();
                 let name = data.name.length > 15 ? data.name.substring(0, 16) + '...' : data.name;
-                rankingList.innerHTML += `<h3> ${name} - ${data.class} | ${data.score}/15 Pontos</h3>`;
-                localStorage.setItem('userName', 'não modifique nada aqui, seja justo!')
+                rankingList.innerHTML += `<h3> ${name} - ${data.class} | ${data.score}/15 Pontos</h3>`; // cria um elemento novo no ranking com as info do aluno
+                localStorage.setItem('userName', 'não modifique nada aqui, seja justo!') // esses setItem será usado para toda vez que pagina recarregar as informações seja resetada 
                 localStorage.setItem('turmaUser', 'turma Pendente')
                 localStorage.setItem('acessoPag', 'false')
             });
