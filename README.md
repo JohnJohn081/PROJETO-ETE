@@ -2,6 +2,9 @@
 
 Projeto desenvolvido para a feira de ciência do ETE PALMARES.
 
+## Veja o projeto online
+[Site aqui](https://johnprojeto.netlify.app/)
+
 ## Índice
 
 - [Descrição](#descrição)
